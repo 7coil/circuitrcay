@@ -1,7 +1,10 @@
 # CircuitRCAY
 _Circuit Remote Access Control (Yves)_
 
-[Enter](https://laundrymachines.netlify.com)
+[View Website](https://laundrymachines.netlify.com)
+
+![](.github/home.png)
+
 
 ## What?
 CircuitRCAY is the unofficial desktop replacement for the Circuit Managed Laundry Systems mobile app. View your laundry status on your desktop.
