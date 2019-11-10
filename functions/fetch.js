@@ -1,6 +1,16 @@
 const fetch = require('node-fetch');
 
 exports.handler = (event, context, callback) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return callback(null, {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+  }
+
   // https://github.com/DavidWells/netlify-functions-workshop/blob/master/lessons-code-complete/core-concepts/2-dynamic-content/functions/using-path.js
   const path = event.path.replace(/\/\.netlify\/functions\/[^/]*/, '');
   
