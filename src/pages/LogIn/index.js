@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchAuthWithCredentials, fetchAuth } from '../../redux/actions/auth';
+import Common from '../../components/Common';
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class LogIn extends React.Component {
       )
     }
     return (
-      <main>
+      <Common>
         <h1>CircuitRCAY</h1>
         <h2>Please login with your "Circuit Managed Laundry Systems" credentials.</h2>
         <form onSubmit={this.login}>
@@ -40,7 +41,7 @@ class LogIn extends React.Component {
         <p>
           Please use the official "Circuit Managed Laundry Systems" mobile application
         </p>
-      </main>
+      </Common>
     )
   }
 }

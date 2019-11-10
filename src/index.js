@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
-import Header from './components/Header';
 import ReduxProvider from './components/ReduxProvider';
 import Home from './pages/Home';
 import Index from './pages/Index';
@@ -15,7 +14,6 @@ class Main extends React.Component {
     return (
       <ReduxProvider>
         <HashRouter>
-          <Header />
           <Switch>
             <Route exact path="/" component={Index} />
             <Route exact path="/login" component={LogIn} />

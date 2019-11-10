@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchAuth } from '../../redux/actions/auth';
 import styles from './index.module.scss';
+import Common from '../../components/Common';
 
 class Home extends React.Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <main>
+      <Common>
         <h1>Home</h1>
         {
           this.props.auth.data && (this.props.auth.data.AccountWelcomeTitle || this.props.auth.data.AccountWelcomeText) &&
@@ -92,7 +93,7 @@ class Home extends React.Component {
             </table> :
             <p>Loading machines...</p>
         }
-      </main>
+      </Common>
     )
   }
 }

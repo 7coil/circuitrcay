@@ -21,7 +21,7 @@ class Header extends React.Component {
     const { data } = this.props.auth
     return (
       <header className={styles.header}>
-        <h1 className={styles.title}><Link to="/">Circuit</Link></h1>
+        <h1 className={styles.title}><Link to="/">CircuitRCAY</Link></h1>
         {
           data ?
             <>

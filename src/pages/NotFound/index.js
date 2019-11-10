@@ -1,11 +1,12 @@
 import React from 'react';
+import Common from '../../components/Common';
 
 class NotFound extends React.Component {
   render() {
     return (
-      <main>
+      <Common>
         <h1>Page not found.</h1>
-      </main>
+      </Common>
     )
   }
 }

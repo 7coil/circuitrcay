@@ -1,0 +1,11 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
+}
