@@ -21,7 +21,8 @@ exports.handler = (event, context, callback) => {
             statusCode: res.status,
             body: JSON.stringify(data, null, 2),
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
             }
           });
         });
