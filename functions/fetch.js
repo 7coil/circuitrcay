@@ -8,7 +8,7 @@ exports.handler = (event, context, callback) => {
     .map(key => `${key}=${encodeURIComponent(event.queryStringParameters[key])}`)
     .join('&')
   
-  const myURL = `https://phoneadmin.flashcashonline.com${path}${qs.length && `?${qs}`}`
+  const myURL = `https://phoneadmin.flashcashonline.com${path}${qs.length ? `?${qs}` : ''}`
 
   fetch(myURL, {
     headers: event.headers,
@@ -18,7 +18,7 @@ exports.handler = (event, context, callback) => {
       res.json()
         .then((data) => {
           callback(null, {
-            statusCode: res,
+            statusCode: res.status,
             body: JSON.stringify(data, null, 2),
             headers: {
               'Content-Type': 'application/json'
