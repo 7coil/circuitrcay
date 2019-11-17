@@ -13,5 +13,8 @@
   },
   "devDependencies": {
     "sass": "^1.23.3"
+  },
+  "scripts": {
+    "develop": "parcel src/index.html"
   }
 }

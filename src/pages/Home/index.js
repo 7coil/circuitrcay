@@ -11,12 +11,61 @@ class Home extends React.Component {
       balance: null,
       machines: null
     }
+    this.machineIdField = React.createRef();
+    this.activateMachine = this.activateMachine.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+    this.interval = null;
+  }
+  componentWillUnmount() {
+    if (this.interval) clearInterval(this.interval)
+  }
+  fetchData(credentials) {
+    fetch('https://laundrymachines.netlify.com/.netlify/functions/fetch/api/user/ReconcileCards', {
+      method: 'POST',
+      headers: {
+        authorization: `bearer ${credentials.data.Token.Value}`
+      }
+    })
+      .then(res => res.json())
+      .then((res) => {
+        if (res.Success) {
+          this.setState({
+            balance: res.Data.AccountBalance.toFixed(2)
+          })
+        }
+      })
+
+    fetch('https://laundrymachines.netlify.com/.netlify/functions/fetch/api/user/LaundryStatus', {
+      method: 'GET',
+      headers: {
+        authorization: `bearer ${credentials.data.Token.Value}`
+      }
+    })
+      .then(res => res.json())
+      .then((res) => {
+        if (res.Success) {
+          this.setState({
+            machines: res.Data
+          })
+        }
+      })
   }
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchAuth())
       .then((data) => {
-        fetch('https://laundrymachines.netlify.com/.netlify/functions/fetch/api/user/ReconcileCards', {
+        this.fetchData(data);
+        this.interval = setInterval(() => {
+          this.fetchData(data);
+        }, 10000)
+      })
+  }
+  activateMachine() {
+    const { dispatch } = this.props;
+    dispatch(fetchAuth())
+      .then((data) => {
+        const id = this.machineIdField.current.value;
+        fetch(`https://laundrymachines.netlify.com/.netlify/functions/fetch/api/user/CreateVirtualCard?machineId=${id}`, {
           method: 'POST',
           headers: {
             authorization: `bearer ${data.data.Token.Value}`
@@ -25,25 +74,9 @@ class Home extends React.Component {
           .then(res => res.json())
           .then((res) => {
             if (res.Success) {
-              this.setState({
-                balance: res.Data.AccountBalance.toFixed(2)
-              })
+              console.log("Success!")
             }
-          })
-
-        fetch('https://laundrymachines.netlify.com/.netlify/functions/fetch/api/user/LaundryStatus', {
-          method: 'GET',
-          headers: {
-            authorization: `bearer ${data.data.Token.Value}`
-          }
-        })
-          .then(res => res.json())
-          .then((res) => {
-            if (res.Success) {
-              this.setState({
-                machines: res.Data
-              })
-            }
+            console.log(res)
           })
       })
   }
@@ -93,6 +126,11 @@ class Home extends React.Component {
             </table> :
             <p>Loading machines...</p>
         }
+        <h2>Activate Machine</h2>
+        <form onSubmit={this.activateMachine}>
+          <input ref={this.machineIdField}></input>
+          <button>Submit</button>
+        </form>
       </Common>
     )
   }
