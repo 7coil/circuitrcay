@@ -1,8 +1,7 @@
 @import '../../scss/index.scss';
 
-
 .header {
-  background-color: pink;
+  background-color: $primary-colour;
   display: grid;
   grid-template-columns: 1fr auto auto;
   flex-flow: wrap;

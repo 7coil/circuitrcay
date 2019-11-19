@@ -1,4 +1,6 @@
+@import '../../scss/index.scss';
+
 .footer {
-  background-color: pink;
+  background-color: $primary-colour;
   padding: 1em 5em;
 }
