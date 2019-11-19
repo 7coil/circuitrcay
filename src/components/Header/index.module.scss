@@ -1,16 +1,36 @@
+@import '../../scss/index.scss';
+
+
 .header {
   background-color: pink;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  flex-flow: wrap;
   padding: 1em 5em;
   align-items: center;
+  @include mobile {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 
 .title {
   padding: 0;
   margin: 0;
   flex-grow: 1;
+  @include mobile {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+  }
 }
 
 .headerLink {
-  margin: 0 0 0 1em;
+  @include desktop {
+    margin: 0 0 0 1em;
+  }
+  @include mobile {
+    margin: 0;
+    text-align: center;
+  }
 }
