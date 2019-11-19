@@ -9,6 +9,8 @@ import LogIn from './pages/LogIn';
 import NotFound from './pages/NotFound';
 import './scss/index.scss';
 
+import * as serviceWorker from './serviceWorker';
+
 class Main extends React.Component {
   render() {
     return (
@@ -27,3 +29,4 @@ class Main extends React.Component {
 }
 
 ReactDOM.render(<Main />, document.getElementById('main'));
+serviceWorker.register();
